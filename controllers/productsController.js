@@ -18,6 +18,19 @@ class ProductsController {
       res.status(400).json(error)
     }
   }
+
+  static fetchSingleProduct = async (req, res) => {
+    const { id } = req.params
+    try {
+      const product = await Product.findById(id);
+      if (!product) {
+        return res.status(404).json({message: `No Product exist with id: ${id}` })
+      }
+      res.status(200).json(product)
+    } catch (error) {
+      res.status(400).json(error)
+    }
+  }
 }
 
 export default ProductsController
