@@ -3,8 +3,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 import connectDatabase from './database/connectDatabase.js'
 
+// Routes Imports
+import productsRouter from './routes/productsRoutes.js'
+
 const app = express()
 const PORT = process.env.PORT || 3000
+
+app.use(express.json())
+app.use('/products',productsRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello world')
