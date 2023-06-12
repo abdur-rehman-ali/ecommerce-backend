@@ -53,5 +53,12 @@ const productSchema = mongoose.Schema({
   }
 })
 
+productSchema.pre('save', function(next) {
+  const product = this; 
+  product.title = product.title.trim(); 
+  product.description = product.description.trim(); 
+  next();
+});
+
 const Product = mongoose.model('Product', productSchema)
 export default Product;
