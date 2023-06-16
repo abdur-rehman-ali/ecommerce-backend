@@ -19,6 +19,8 @@ class ProductsController {
     }
     try {
       const products = await query
+      let totalProducts = await Product.count()
+      res.set('X-Total-Count', totalProducts);
       res.status(200).json(products)
     } catch (error) {
       res.status(400).send(error)
