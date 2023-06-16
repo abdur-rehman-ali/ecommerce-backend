@@ -12,6 +12,11 @@ class ProductsController {
     if (req.query.sort) {
       query = query.sort({ [req.query.sort]: req.query.order ? req.query.order : 'ASC' })
     }
+    if (req.query.page) {
+      const pageSize = req.query.limit || 10
+      const page = req.query.page
+      query = query.skip(pageSize * (page - 1)).limit(pageSize)
+    }
     try {
       const products = await query
       res.status(200).json(products)
