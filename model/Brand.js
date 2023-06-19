@@ -12,4 +12,16 @@ brandSchema.pre('save', function (next) {
   next();
 })
 
+const virtual = brandSchema.virtual('id');
+virtual.get(function () {
+  return this._id;
+});
+brandSchema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform: function (doc, ret) {
+    delete ret._id;
+  },
+});
+
 export default mongoose.model('Brand', brandSchema)
