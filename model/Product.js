@@ -60,5 +60,17 @@ productSchema.pre('save', function(next) {
   next();
 });
 
+const virtual = productSchema.virtual('id');
+virtual.get(function () {
+  return this._id;
+});
+productSchema.set('toJSON', {
+  virtuals: true,
+  versionKey: false,
+  transform: function (doc, ret) {
+    delete ret._id;
+  },
+});
+
 const Product = mongoose.model('Product', productSchema)
 export default Product;
