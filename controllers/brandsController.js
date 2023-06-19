@@ -8,7 +8,6 @@ class BrandsController {
   })
 
   static createBrand = asyncWrapper(async (req, res) => {
-    console.log(req.body);
     const brand = new Brand(req.body)
     const savedBrand = await brand.save()
     res.status(201).json(savedBrand)
