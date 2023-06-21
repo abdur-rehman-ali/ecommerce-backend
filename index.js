@@ -7,6 +7,7 @@ import connectDatabase from './database/connectDatabase.js'
 import productsRouter from './routes/productsRoutes.js'
 import brandsRouter from './routes/brandsRoutes.js'
 import categoryRouter from './routes/categoryRoutes.js'
+import authRouter from './routes/authRoutes.js'
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use('/products', productsRouter)
 app.use('/brands', brandsRouter)
 app.use('/categories', categoryRouter)
+app.use('/auth', authRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello world')
